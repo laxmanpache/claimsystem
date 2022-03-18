@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
-  claimtype: {type:String},
-  visittype: {type:String},
-  name:{type:String},
-  invoicenumber: {type:Number},
-  date:{type:String},
-  amout:{type:Number},
-  remark:{type:String}
+  claimtype: { type: String },
+  visittype: { type: String },
+  name: { type: String },
+  invoicenumber: { type: Number },
+  date: { type: String },
+  amout: { type: Number },
+  remark: { type: String }
 
 })
-const post=mongoose.model('post',PostSchema)
+const post = mongoose.model('post', PostSchema)
 
 export default post;

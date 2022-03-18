@@ -1,22 +1,22 @@
 
 import mongoose from 'mongoose';
 
-const Connection = async() => {
+const Connection = async () => {
 
 
-  try{
+    try {
 
-   await mongoose.connect('mongodb+srv://Laxman:123@cluster0.6m5dz.mongodb.net/BLOG?retryWrites=true&w=majority',
-        {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }
-    );
-    console.log("database connected sucessfully")
+        await mongoose.connect('mongodb+srv://Laxman:123@cluster0.6m5dz.mongodb.net/BLOG?retryWrites=true&w=majority',
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            }
+        );
+        console.log("database connected sucessfully")
 
     }
-    catch(e){
-        console.log("error occure "+e)
+    catch (e) {
+        console.log("error occure " + e)
     }
 }
 

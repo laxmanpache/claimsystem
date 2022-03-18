@@ -38,43 +38,44 @@ export const GetAllExpences = async (req, res) => {
 
 // Deleting claim details from db
 
-export const DeleteClaim =async (req,res)=>{
-    try{
+export const DeleteClaim = async (req, res) => {
+    try {
         console.log(req.params.invoicenumber)
-         const resp = await post.remove({"invoicenumber":req.params.invoicenumber}) 
+        const resp = await post.remove({ "invoicenumber": req.params.invoicenumber })
         res.json("claim delted sucessfully")
         console.log(resp)
     }
-    catch(e){
-        console.log("error occure" +e)
+    catch (e) {
+        console.log("error occure" + e)
     }
 }
 
 // updating claim inside of DB
 
-export const UpdateClaim = async(req,res)=>{
-    try{
+export const UpdateClaim = async (req, res) => {
+    try {
         console.log(req.body);
-        const invoiceNum=req.params.invoicenumber;
-        const {claimtype,visittype,name,invoicenumber,date,amount,remark}=req.body;
-        const resp=await post.updateOne(
+        const invoiceNum = req.params.invoicenumber;
+        const { claimtype, visittype, name, invoicenumber, date, amount, remark } = req.body;
+        const resp = await post.updateOne(
 
-            {invoicenumber:invoiceNum},
-            {$set:{
-                claimtype:claimtype,
-                visittype:visittype,
-                name:name,
-                invoicenumber:invoicenumber,
-                date:date,
-                amount:amount,
-                remark:remark,
+            { invoicenumber: invoiceNum },
+            {
+                $set: {
+                    claimtype: claimtype,
+                    visittype: visittype,
+                    name: name,
+                    invoicenumber: invoicenumber,
+                    date: date,
+                    amount: amount,
+                    remark: remark,
 
-            },
-        })
-      res.json(resp);
+                },
+            })
+        res.json(resp);
 
     }
-    catch(e){
-        console.log('error occure'+e)
+    catch (e) {
+        console.log('error occure' + e)
     }
 }
