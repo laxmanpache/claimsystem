@@ -4,7 +4,7 @@ import post from "../module/PostSchema.js";
 
 // Storing expenses data in mongodb
 export const CreateExpences = (req, res) => {
-    console.log("hello")
+    // console.log("hello")
 
     try {
 
