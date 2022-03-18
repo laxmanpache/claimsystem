@@ -9,7 +9,7 @@ export const CreateExpences = (req, res) => {
     try {
 
 
-        // console.log(req.body)
+        console.log(req.body)
 
         const postdata = req.body;
         const newpost = new post(postdata)
