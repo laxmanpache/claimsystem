@@ -28,7 +28,7 @@ const ExpenceTableantd = () => {
         // alert("hello")
         const { data } = await axios.get("http://localhost:3003/create")
         // alert("hello")
-        console.log(data)
+        // console.log(data)
         setTableData(data)
     }
 
@@ -69,7 +69,7 @@ const ExpenceTableantd = () => {
             key: '6',
             title: 'Action',
             render: (record) => {
-                console.log(record.invoicenumber)
+                // console.log(record.invoicenumber)
                 return (
                     <>
                         <NoteAltOutlinedIcon onClick={() => { EditRecord(record) }} />
@@ -94,7 +94,7 @@ const ExpenceTableantd = () => {
 
                 try {
                     const resp = await axios.delete(`http://localhost:3003/delete/${invoicenumber}`)
-                    console.log(resp)
+                    // console.log(resp)
                     alert(`${invoicenumber} deleted sucessfuly`)
                 }
                 catch (e) {
@@ -136,23 +136,23 @@ const ExpenceTableantd = () => {
     //       },
     //     ],
     //   };
-    const SavedataToDB=async(EditingClaim)=>{
+    const SavedataToDB = async (EditingClaim) => {
         try {
             // router.patch('/update/:invoicenumber', UpdateClaim)
-            const resp = await axios.patch(`http://localhost:3003/update/${EditingClaim.invoicenumber}`,EditingClaim)
-            console.log(resp)
+            const resp = await axios.patch(`http://localhost:3003/update/${EditingClaim.invoicenumber}`, EditingClaim)
+            // console.log(resp)
             // alert(`${invoicenumber} deleted sucessfuly`)
         }
         catch (e) {
             console.Console('Error occure' + e)
-        }  
+        }
     }
     return (
         <>
             <Table
                 columns={columns}
                 dataSource={TableData}
-                pagination={{ pageSize: 3 }}
+                pagination={{ pageSize: 5 }}
             >
 
             </Table>
@@ -163,26 +163,24 @@ const ExpenceTableantd = () => {
                 okText="Save"
                 onCancel={() => {
                     setEditng(false)
-                    setEditingClaim(null)
+                    setEditingClaim({})
                 }}
                 onOk={() => {
 
                     SavedataToDB(EditingClaim)
-                    setTableData((pre)=>{
-                        return pre.map(claim=>{
-                            if(claim.invoicenumber===EditingClaim.invoicenumber)
-                            {
+                    setTableData((pre) => {
+                        return pre.map(claim => {
+                            if (claim.invoicenumber === EditingClaim.invoicenumber) {
                                 return EditingClaim
                             }
-                            else
-                             {
-                                 return claim;
-                             }
+                            else {
+                                return claim;
+                            }
                         })
                     })
                     setEditng(false)
-                    setEditingClaim(null)
-                    console.log(EditingClaim )
+                    setEditingClaim({})
+                    // console.log(EditingClaim )
 
                 }}
             >
@@ -208,9 +206,10 @@ const ExpenceTableantd = () => {
                                             return { ...pre, claimtype: value }
                                         })
                                     }}>
-                                        <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="Yiminghe">yiminghe</Option>
+                                        <Option value="Travel">Travel</Option>
+                                        <Option value="Food">Food</Option>
+                                        <Option value="Mobile">Mobile</Option>
+                                        <Option value="Other">Other</Option>
                                     </Select>
                                 </Form.Item>
                             </Col>
@@ -225,9 +224,10 @@ const ExpenceTableantd = () => {
                                             return { ...pre, visittype: value }
                                         })
                                     }}>
-                                        <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="Yiminghe">yiminghe</Option>
+                                        <Option value="Busness">Busness</Option>
+                                        <Option value="industial">industial</Option>
+                                        <Option value="Finatial">Finatial</Option>
+                                        <Option value="Other">Other</Option>
                                     </Select>
                                 </Form.Item>
                             </Col>
@@ -243,13 +243,13 @@ const ExpenceTableantd = () => {
                                         defaultValue={EditingClaim?.name}
                                         onChange={(e) => {
                                             // alert('onchange')
-                                            console.log(EditingClaim.name)
+                                            // console.log(EditingClaim.name)
                                             setEditingClaim((pre) => {
                                                 return { ...pre, name: e.target.value }
                                             }
 
                                             )
-                                            
+
                                         }
                                         }
                                         placeholder="Client Name" />
@@ -268,7 +268,7 @@ const ExpenceTableantd = () => {
                                     <Input
                                         value={EditingClaim?.invoicenumber}
                                         defaultValue={EditingClaim?.invoicenumber}
-                                        
+
                                         onChange={(e) => {
                                             // alert('onchange')
                                             setEditingClaim((pre) => {
@@ -289,8 +289,8 @@ const ExpenceTableantd = () => {
                                 // rules={[ { type: 'string'}]}
                                 >
                                     <DatePicker value={EditingClaim?.date}
-                                    // defaultValue={EditingClaim?.date}
-                                    defaultValue={moment(EditingClaim?.date, dateFormat)} 
+                                        // defaultValue={EditingClaim?.date}
+                                        defaultValue={moment(EditingClaim?.date, dateFormat)}
                                         onChange={(date) => {
                                             setEditingClaim((pre) => {
                                                 return { ...pre, date: date }
@@ -330,19 +330,19 @@ const ExpenceTableantd = () => {
 
                                 // rules={[{ required: true }, { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
                                 >
-                                    <TextArea rows={4} value={EditingClaim?.remark} 
-                                     defaultValue={EditingClaim?.remark}
-                                    onChange={(e) => {
-                                        // alert('onchange')
-                                        setEditingClaim((pre) => {
-                                            return { ...pre, remark: e.target.value }
+                                    <TextArea rows={4} value={EditingClaim?.remark}
+                                        defaultValue={EditingClaim?.remark}
+                                        onChange={(e) => {
+                                            // alert('onchange')
+                                            setEditingClaim((pre) => {
+                                                return { ...pre, remark: e.target.value }
+                                            }
+
+
+                                            )
+                                            // console.log(EditingClaim)
                                         }
-
-
-                                        )
-                                        // console.log(EditingClaim)
-                                    }
-                                    } placeholder="Please Enter Remark if any" />
+                                        } placeholder="Please Enter Remark if any" />
                                 </Form.Item>
                             </Col>
 
