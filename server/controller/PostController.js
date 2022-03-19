@@ -1,6 +1,24 @@
 
 import post from "../module/PostSchema.js";
+import nodemailer from 'nodemailer';
 
+
+
+//Sending Email 
+
+let transporter=nodemailer.createTransport({
+    service:'gmail',
+    auth:{
+        user:'pachelaxman22@gmail.com',
+        pass:'507287049346'
+    }
+});
+let mailOptions={
+    from:'pachelaxman22@gmail.com',
+    to :'lakshmanpache@gmail.com',
+    subject:'Regarding Claim ',
+    text:` Hello you submitted your claim sucessfully......`
+}
 
 // Storing expenses data in mongodb
 export const CreateExpences = (req, res) => {
@@ -10,7 +28,16 @@ export const CreateExpences = (req, res) => {
 
 
         console.log(req.body)
-
+        transporter.sendMail(mailOptions,function(error,info){
+            if(error)
+            {
+                console.log('error occure'+error);
+            }
+            else
+            {
+                console.log("Email Sent "+info.response)
+            }
+        })  
         const postdata = req.body;
         const newpost = new post(postdata)
         newpost.save();
