@@ -36,13 +36,13 @@ const AddExpence = ({ open, handleClose }) => {
 
   const StoreData =  () => {
     // alert("Save Data");
-    console.log(ClaimType)
-    console.log(Name)
-    console.log(Number)
-    console.log(Amount)
-    console.log(date)
-    console.log(Remark)
-    console.log(TypeOfVisit)
+    // console.log(ClaimType)
+    // console.log(Name)
+    // console.log(Number)
+    // console.log(Amount)
+    // console.log(date)
+    // console.log(Remark)
+    // console.log(TypeOfVisit)
     setclaimDetais({
       claimtype: ClaimType,
       visittype: TypeOfVisit,
@@ -75,11 +75,11 @@ const AddExpence = ({ open, handleClose }) => {
     if (count === 1) {
       const SaveDataToDb = async () => {
 
-        console.log("helo Laxman");
-        console.log(claimDetais)
+        // console.log("helo Laxman");
+        // console.log(claimDetais)
         try {
           const resp = await axios.post("http://localhost:3003/create", claimDetais);
-          console.log(resp);
+          // console.log(resp);
         }
         catch (e) {
           console.log("error occure" + e)
