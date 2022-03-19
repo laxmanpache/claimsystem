@@ -4,9 +4,9 @@ import axios from 'axios'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+import AddExpence from './AddExpence';
 
 
 
@@ -23,7 +23,7 @@ const columns = [
             //   console.log(cellValues.row.invoicenumber)
                 return (
                   <div>
-                       <NoteAltOutlinedIcon onClick={()=>alert("hello")}style={{color:'black'}}/>
+                       <NoteAltOutlinedIcon onClick={()=>{EditRowData(cellValues.row.invoicenumber)}}style={{color:'black'}}/>
                        <DeleteOutlinedIcon onClick={()=>{DeleteRowdata(cellValues.row.invoicenumber)}} style={{color:'red'}}/>
                   </div>
                 );
@@ -34,18 +34,42 @@ const columns = [
 
 
 const DeleteRowdata=async(invoicenumber)=>{
-          alert(invoicenumber)
+        //   alert(invoicenumber)
           try{
           const resp= await axios.delete(`http://localhost:3003/delete/${invoicenumber}`)
           console.log(resp)
+          alert(`${invoicenumber} deleted sucessfuly`)
           }
           catch(e){
               console.Console('Error occure'+e)
           }
 }
 
+// const EditRowData=(invoideNumber)=>{
+        //   const [open, setOpen] = React.useState(true)
+        //   alert('hello')
+//   const handleOpen = () => setOpen(true);
+//   const handleClose = () => setOpen(false);
+//   handleOpen();
+//   <AddExpence open={open} handleClose={handleClose} />
+// }
+// let Edit;
+// let EditId;
+const EditRowData = (id) =>{
+    // event.stopPropagation();
+    // apiRef.current.setRowMode(id, 'edit');
+  
+
+  };
+
 export const ExpenceTable = () => {
 
+    // console.log(Edit)
+    // console.log(EditId)
+    // useEffect(() => {
+    //   alert(Edit)
+    //   alert(EditId)
+    // }, [Edit,EditId])
     
     const Featchdata = async () => {
         // alert("hello")

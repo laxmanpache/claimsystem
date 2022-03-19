@@ -54,9 +54,15 @@ export const DeleteClaim = async (req, res) => {
 
 export const UpdateClaim = async (req, res) => {
     try {
+       
+        console.log("Hello body")
         console.log(req.body);
         const invoiceNum = req.params.invoicenumber;
-        const { claimtype, visittype, name, invoicenumber, date, amount, remark } = req.body;
+        console.log(invoiceNum)
+        const { claimtype, visittype, name, invoicenumber, date, amout, remark } = req.body;
+        console.group(claimtype)
+        console.group(visittype)
+        console.group(name)
         const resp = await post.updateOne(
 
             { invoicenumber: invoiceNum },
@@ -67,7 +73,7 @@ export const UpdateClaim = async (req, res) => {
                     name: name,
                     invoicenumber: invoicenumber,
                     date: date,
-                    amount: amount,
+                    amout: amout,
                     remark: remark,
 
                 },
